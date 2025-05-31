@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class MainView {
+
+    public BaseView[] views;
+
     public Scene makeView() {
         //TOP BAR (HBox with 3 switch buttons)
         var topBtns = new HBox(25);
@@ -33,8 +36,8 @@ public class MainView {
 
         //THREE VIEWS, STACKPANE TO HOLD THEM, WITH ONLY ONE VISIBLE AT A TIME
         var contStack = new StackPane();
-        contStack.setPrefHeight(700); //TODO  bind to scene
-        BaseView[] views = {new ExplView(),new InsView(), new SettView()};
+        contStack.setPrefHeight(700); //TODO  bind to scene?
+        views = new BaseView[]{new ExplView(), new InsView(), new SettView()};
         contStack.getChildren().addAll(views);
 
         //WIRING THE BUTTONS TO SWITCH VIEWS

@@ -2,6 +2,8 @@ module _1ms.jmm.jmcmodmgr {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires java.net.http;
+    requires com.google.gson;
 
 
     opens _1ms.jmm.jmcmodmgr to javafx.fxml;

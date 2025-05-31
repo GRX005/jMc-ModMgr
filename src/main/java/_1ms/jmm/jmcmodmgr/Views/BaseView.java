@@ -1,5 +1,6 @@
 package _1ms.jmm.jmcmodmgr.Views;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -25,6 +26,15 @@ public class BaseView extends VBox{
     public Text formatTex(Text t) {
         t.setFill(Color.WHITE);
         return t;
+    }
+
+    public void modCont(String... text) {
+        Platform.runLater(()-> {
+            this.getChildren().clear();
+            for (String s : text) {
+                this.getChildren().add(formatTex(new Text(s)));
+            }
+        });
     }
 
 
