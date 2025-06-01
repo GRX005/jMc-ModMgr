@@ -14,16 +14,17 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModApi {
 
-    public CompletableFuture<LinkedList<String>> getMods() {
-        CompletableFuture<LinkedList<String>> toRet = new CompletableFuture<>();
+    public CompletableFuture<LinkedList<String[]>> getMods() {//TODO TEST SORREND
+        CompletableFuture<LinkedList<String[]>> toRet = new CompletableFuture<>();
         Thread.ofVirtual().start(() -> {
             try (var client = HttpClient.newHttpClient()) {
-                var req = HttpRequest.newBuilder(URI.create("https://api.modrinth.com/v2/search")).build();
+                var req = HttpRequest.newBuilder(URI.create("https://api.modrinth.com/v2/search?query=tor")).build();
                 var resp = client.send(req, HttpResponse.BodyHandlers.ofString());
                 var hits = JsonParser.parseString(resp.body()).getAsJsonObject().getAsJsonArray("hits");
-                LinkedList<String> list = new LinkedList<>();
+                LinkedList<String[]> list = new LinkedList<>();
                 for (JsonElement e : hits) {
-                    list.add(e.getAsJsonObject().get("title").getAsString());
+                    var jobj = e.getAsJsonObject();
+                    list.add(new String[]{jobj.get("icon_url").getAsString(),jobj.get("title").getAsString(),jobj.get("description").getAsString()});
                 }
                 toRet.complete(list);
 

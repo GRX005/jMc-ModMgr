@@ -12,8 +12,8 @@ public class ExplView extends BaseView {
         var prog = new ProgressBar();
         prog.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
         this.getChildren().add(prog);
-    }
 
+    }
 
 
 }

@@ -5,8 +5,10 @@ import _1ms.jmm.jmcmodmgr.Views.Panes.InsView;
 import _1ms.jmm.jmcmodmgr.Views.Panes.SettView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -19,7 +21,7 @@ public class MainView {
     public Scene makeView() {
         //TOP BAR (HBox with 3 switch buttons)
         var topBtns = new HBox(25);
-        topBtns.setPadding(new Insets(15));               // optional spacing around the bar
+        topBtns.setPadding(new Insets(15));// optional spacing around the bar
         topBtns.setStyle("-fx-background-color: #1f1f1f;");
         topBtns.setAlignment(Pos.CENTER);
 
@@ -56,7 +58,7 @@ public class MainView {
 
     //SetTextWhite
     @SafeVarargs
-    public final <T> void setTW(T... elem) {
+    public final <T extends Node> void setTW(T... elem) {
         for (T e : elem) {
             switch (e) {
                 case Text t -> t.setStyle("-fx-fill: #fff;");

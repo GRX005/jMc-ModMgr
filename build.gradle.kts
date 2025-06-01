@@ -12,6 +12,7 @@ version = "1.0"
 
 repositories {
     mavenCentral()
+    maven(url = "https://jitpack.io")
 }
 
 val junitVersion = "5.10.2"
@@ -20,6 +21,7 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+
 }
 
 tasks.withType<JavaCompile> {
@@ -41,6 +43,8 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation("com.google.code.gson:gson:2.13.1")
+    // https://mvnrepository.com/artifact/org.sejda.imageio/webp-imageio
+    implementation("org.sejda.imageio:webp-imageio:0.1.6")
 }
 
 tasks.withType<Test> {

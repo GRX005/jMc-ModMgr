@@ -18,7 +18,7 @@ public class Main extends Application {
         var scene = mv.makeView();
         stage.setScene(scene);
         new ModApi().getMods().thenAccept(e-> {
-            mv.views[0].modCont(e.toArray(new String[0]));
+            mv.views[0].modCont(e.toArray(new String[0][0]));
             System.out.println(e);
         });
         System.out.println("Rand");

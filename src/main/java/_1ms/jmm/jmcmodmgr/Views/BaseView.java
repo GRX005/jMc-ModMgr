@@ -1,5 +1,6 @@
 package _1ms.jmm.jmcmodmgr.Views;
 
+import _1ms.jmm.jmcmodmgr.ItemBox;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
@@ -28,11 +29,11 @@ public class BaseView extends VBox{
         return t;
     }
 
-    public void modCont(String... text) {
+    public void modCont(String[]... text) {//TODO MAKE ASYNC
         Platform.runLater(()-> {
             this.getChildren().clear();
-            for (String s : text) {
-                this.getChildren().add(formatTex(new Text(s)));
+            for (String[] s : text) {
+                this.getChildren().add(new ItemBox(s[0],s[1],s[2]));
             }
         });
     }
