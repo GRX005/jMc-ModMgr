@@ -33,10 +33,13 @@ public class ItemBox extends VBox {
 
        view.setFitWidth(96);
        view.setFitHeight(96);
+       view.minHeight(96);
+       view.minWidth(96);
+
        view.setPreserveRatio(true);
 
         var clip = new Rectangle(96, 96);
-        clip.setArcWidth(16);   // try 16 or 20 for a noticeable roundness
+        clip.setArcWidth(16);
         clip.setArcHeight(16);
         view.setClip(clip);
 
@@ -47,6 +50,7 @@ public class ItemBox extends VBox {
         Label descLabel = new Label(desc);
         descLabel.setFont(Font.font("Segoe UI", 12));
         descLabel.setTextFill(Color.LIGHTGRAY);
+        descLabel.setWrapText(true);
 
         VBox textBox = new VBox(titleLabel, descLabel);
         textBox.setSpacing(2);
@@ -57,7 +61,8 @@ public class ItemBox extends VBox {
         itemBox.setAlignment(Pos.CENTER_LEFT);
         itemBox.setBackground(new Background(new BackgroundFill(Color.web("#1e1e2e"), new CornerRadii(6), Insets.EMPTY)));
         itemBox.setMaxWidth(500);
-        itemBox.setMinHeight(100);
+        itemBox.setMinHeight(120);
+        itemBox.setMaxHeight(120);
 
         itemBox.setOnMouseEntered(e -> itemBox.setBackground(new Background(new BackgroundFill(Color.web("#2c2c3c"), new CornerRadii(6), Insets.EMPTY))));
         itemBox.setOnMouseExited(e -> itemBox.setBackground(new Background(new BackgroundFill(Color.web("#1e1e2e"), new CornerRadii(6), Insets.EMPTY))));
