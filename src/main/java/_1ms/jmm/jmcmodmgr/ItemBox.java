@@ -1,8 +1,10 @@
 package _1ms.jmm.jmcmodmgr;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -15,9 +17,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class ItemBox extends VBox {
-    public ItemBox(String imgUrl, String title, String desc) {
+    public ItemBox() {
+
+    }
+
+    private ItemBox(String imgUrl, String title, String desc) {
         var view = new ImageView(loadWebP(imgUrl));
 
        view.setFitWidth(96);
@@ -53,6 +64,22 @@ public class ItemBox extends VBox {
         getChildren().add(itemBox);
         setAlignment(Pos.CENTER);
 
+    }
+
+    public CompletableFuture<Set<ItemBox>> make(Runnable callback, String[]... text) {
+        Set<ItemBox> boxSet = new LinkedHashSet<>();
+
+        CompletableFuture<Set<ItemBox>> box = new CompletableFuture<>();
+
+        Thread.ofVirtual().start(()-> {
+            for (String[] s : text) {
+                boxSet.add(new ItemBox(s[0],s[1],s[2]));
+            }
+            box.complete(boxSet);
+            callback.run();
+        });
+
+        return box;
     }
 
     private static Image loadWebP(String webpUrl) {//TODO Cache
