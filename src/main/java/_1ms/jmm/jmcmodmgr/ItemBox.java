@@ -1,10 +1,8 @@
 package _1ms.jmm.jmcmodmgr;
 
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -17,35 +15,30 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class ItemBox extends VBox {
-    public ItemBox() {
-
-    }
+    public ItemBox() {}
 
     private ItemBox(String imgUrl, String title, String desc) {
         var view = new ImageView(loadWebP(imgUrl));
+        view.setFitWidth(96);
+        view.setFitHeight(96);
+        view.minHeight(96);
+        view.minWidth(96);
 
-       view.setFitWidth(96);
-       view.setFitHeight(96);
-       view.minHeight(96);
-       view.minWidth(96);
-
-       view.setPreserveRatio(true);
-
+        view.setPreserveRatio(true);
         var clip = new Rectangle(96, 96);
         clip.setArcWidth(16);
         clip.setArcHeight(16);
         view.setClip(clip);
 
         Label titleLabel = new Label(title);
-        titleLabel.setFont(Font.font("Segoe UI", 15));
+        titleLabel.setFont(Font.font(20));
         titleLabel.setTextFill(Color.WHITE);
+
 
         Label descLabel = new Label(desc);
         descLabel.setFont(Font.font("Segoe UI", 12));

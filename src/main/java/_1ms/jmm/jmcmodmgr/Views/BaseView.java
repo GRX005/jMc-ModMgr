@@ -32,8 +32,8 @@ public class BaseView extends VBox{
         t.setFill(Color.WHITE);
         return t;
     }
-    ScrollPane scroll;
-    public void modCont(String[]... text) {//TODO MAKE ASYNC
+    public ScrollPane scroll;
+    public void modCont(String[]... text) {
         var cucc = new ItemBox().make(this::modCallback,text);
         var box = new VBox();
         cucc.thenAccept(c->c.forEach(d->Platform.runLater(()->box.getChildren().add(d))));
@@ -44,7 +44,7 @@ public class BaseView extends VBox{
         box.setStyle("-fx-background-color: #0d1117;");
         box.setSpacing(10);
         scroll.getStylesheets().add(getClass().getResource("/scroll.css").toExternalForm());
-
+        scroll.setId("sc");
 
     }
 
@@ -52,8 +52,12 @@ public class BaseView extends VBox{
         var prog = ((ProgressBar) lookup("#bt"));
         prog.setVisible(false);
         prog.setManaged(false);
-        Platform.runLater(()-> getChildren().add(scroll));
+        Platform.runLater(()-> {
+            getChildren().add(scroll);
+            try {
+                getChildren().remove(lookup("#failText"));
+            } catch (Exception ignored) {}
+        });
     }
-
 
 }

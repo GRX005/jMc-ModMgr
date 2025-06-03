@@ -14,11 +14,11 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModApi {
 
-    public CompletableFuture<LinkedList<String[]>> getMods() {//TODO TEST SORREND
+    public static CompletableFuture<LinkedList<String[]>> getMods(String query) {
         CompletableFuture<LinkedList<String[]>> toRet = new CompletableFuture<>();
         Thread.ofVirtual().start(() -> {
             try (var client = HttpClient.newHttpClient()) {
-                var req = HttpRequest.newBuilder(URI.create("https://api.modrinth.com/v2/search?query=tor")).build();
+                var req = HttpRequest.newBuilder(URI.create(query == null ? "https://api.modrinth.com/v2/search":"https://api.modrinth.com/v2/search?query="+query)).build();
                 var resp = client.send(req, HttpResponse.BodyHandlers.ofString());
                 var hits = JsonParser.parseString(resp.body()).getAsJsonObject().getAsJsonArray("hits");
                 LinkedList<String[]> list = new LinkedList<>();

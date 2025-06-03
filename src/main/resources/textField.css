@@ -1,0 +1,20 @@
+.text-field {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #777777;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #333333;
+    -fx-border-width: 1;
+    -fx-padding: 6 8;
+    -fx-highlight-fill: #555555;
+    -fx-highlight-text-fill: #ffffff;
+    -fx-cursor: text;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused {
+    -fx-border-color: #888888;
+    -fx-effect: dropshadow(one-pass-box, rgba(255, 255, 255, 0.2), 4, 0.1, 0, 0);
+}

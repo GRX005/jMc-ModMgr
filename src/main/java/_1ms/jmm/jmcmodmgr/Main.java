@@ -17,9 +17,7 @@ public class Main extends Application {
         var mv = new MainView();
         var scene = mv.makeView();
         stage.setScene(scene);
-        new ModApi().getMods().thenAccept(e-> {
-            mv.views[0].modCont(e.toArray(new String[0][0]));
-        });
+        ModApi.getMods(null).thenAccept(e-> mv.views[0].modCont(e.toArray(new String[0][0])));
         stage.show();
     }
 
