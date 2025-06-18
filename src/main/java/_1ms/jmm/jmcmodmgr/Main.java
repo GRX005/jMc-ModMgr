@@ -1,9 +1,12 @@
 package _1ms.jmm.jmcmodmgr;
 
 import _1ms.jmm.jmcmodmgr.Views.MainView;
-import com.google.gson.Gson;
+import _1ms.jmm.jmcmodmgr.Views.ModListView;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -12,12 +15,12 @@ public class Main extends Application {
 
         stage.setMinWidth(1000);
         stage.setMinHeight(600);
-
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/iconCut.png"))));
         stage.setTitle("McModMgr");
         var mv = new MainView();
         var scene = mv.makeView();
         stage.setScene(scene);
-        ModApi.getMods(null).thenAccept(e-> mv.views[0].modCont(e.toArray(new String[0][0])));
+        ModApi.getMods(null).thenAccept(e-> ((ModListView) mv.allViews[0]).modCont(e.toArray(new String[0][0])));
         stage.show();
     }
 

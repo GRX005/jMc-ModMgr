@@ -1,11 +1,11 @@
 package _1ms.jmm.jmcmodmgr.Views.Panes;
 
-import _1ms.jmm.jmcmodmgr.Views.BaseView;
+import _1ms.jmm.jmcmodmgr.Views.ModListView;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.text.Text;
 
-public class InsView extends BaseView {
+public class InsView extends ModListView {
     public InsView() {
         this.getChildren().add(formatTex(new Text("This is the Installed View!")));
         ProgressBar prog = new ProgressBar();
@@ -14,5 +14,10 @@ public class InsView extends BaseView {
         prog.getStylesheets().add(getClass().getResource("/load.css").toExternalForm());
         prog.setMinWidth(200);
         getChildren().add(prog);
+    }
+
+    @Override
+    public void handleSearch(ActionEvent e) {
+
     }
 }
