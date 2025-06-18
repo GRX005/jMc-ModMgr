@@ -3,13 +3,9 @@ package _1ms.jmm.jmcmodmgr.Views;
 import _1ms.jmm.jmcmodmgr.ItemBox;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public abstract class ModListView extends BaseView {
 
