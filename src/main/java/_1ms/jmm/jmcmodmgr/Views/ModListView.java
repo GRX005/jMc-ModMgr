@@ -30,7 +30,7 @@ public abstract class ModListView extends BaseView {
         scroll.setId("sc");
 
     }
-
+//asd
     public void modCallback() {
         var prog = ((ProgressBar) lookup("#bt"));
         prog.setVisible(false);
